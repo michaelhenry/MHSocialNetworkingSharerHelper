@@ -33,7 +33,11 @@
 + (MHSocialNetworkingSharerHelper *)sharedClient;
 
 - (void) postStatusToTwitter:(NSString*)message account:(ACAccount*)account successBlock:(void(^)(void))successBlock errorBlock:(void(^)(NSError*error))errorBlock;
+
 - (void) postStatusToFacebook:(NSString*)message successBlock:(void(^)(id result))successBlock errorBlock:(void(^)(NSError*error))errorBlock;
+
+- (void) postStatusPhotoToFacebook:(UIImage*)photo caption:(NSString *)caption successBlock:(void (^)(id result))successBlock errorBlock:(void (^)(NSError*error))errorBlock;
+
 - (void) loadFacebookCredentialsWithSuccessBlock:(void(^)(FBSession*session))successBlock errorBlock:(void(^)(NSError*error))errorBlock;
 - (void) loadTwitterCredentialsWithSuccessBlock:(void(^)(ACAccount*account))successBlock errorBlock:(void(^)(NSError*error))errorBlock;
 @end

@@ -100,6 +100,22 @@
      }];
 }
 
+- (void) postStatusPhotoToFacebook:(UIImage *)photo caption:(NSString *)caption successBlock:(void (^)(id result))successBlock errorBlock:(void (^)(NSError*error))errorBlock {
+    
+    NSDictionary * params = [@{
+                               @"caption" : caption,
+                               @"picture" : photo,
+                               } mutableCopy];
+    
+    [FBRequestConnection startWithGraphPath:@"me/photos" parameters:params HTTPMethod:@"POST" completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if(!error) {
+            successBlock(result);
+        }else {
+            errorBlock(error);
+        }
+    }];
+}
+
 
 #pragma mark - Social Credentials
 - (void) loadFacebookCredentialsWithSuccessBlock:(void(^)(FBSession*session))successBlock errorBlock:(void(^)(NSError*error))errorBlock{
